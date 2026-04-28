@@ -1,0 +1,225 @@
+/* ============================================================
+   AUTOR: Franco y soporte del equipo
+   FUNCIÓN: Define todos los @keyframes y clases de animación:
+            score-pop flotante, screen-flash, hudShake, scorePulse,
+            meteoros decorativos, countdown, badge-unlock con rebote
+            elástico y cursor personalizado con glow.
+   ============================================================ */
+/* ============================================================
+    animations.css — Efectos visuales, partículas y animaciones
+    Realizado por: Equipo Captura la Bolita
+   ============================================================ */
+
+/* ── Partícula de puntos (efecto al atrapar bola) ─────────── */
+.score-pop {
+  position: fixed;
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 900;
+  pointer-events: none;
+  z-index: 100;
+  animation: scorePop 1s ease forwards;
+}
+
+.score-pop.positive { color: var(--color-accent3); }
+.score-pop.negative { color: var(--color-danger); }
+.score-pop.bonus    { color: var(--color-success); }
+
+@keyframes scorePop {
+  0%   { opacity: 1; transform: translateY(0) scale(1); }
+  50%  { opacity: 1; transform: translateY(-40px) scale(1.2); }
+  100% { opacity: 0; transform: translateY(-80px) scale(0.8); }
+}
+
+/* ── Flash de pantalla ───────────────────────────────────── */
+.screen-flash {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 500;
+  border-radius: 0;
+  animation: flashOut 0.35s ease forwards;
+}
+
+.screen-flash.hit   { background: rgba(255, 58, 58, 0.25); }
+.screen-flash.catch { background: rgba(0, 255, 136, 0.15); }
+
+@keyframes flashOut {
+  0%   { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* ── Shake del HUD al perder vida ────────────────────────── */
+@keyframes hudShake {
+  0%, 100% { transform: translateX(0); }
+  20%       { transform: translateX(-6px); }
+  40%       { transform: translateX(6px); }
+  60%       { transform: translateX(-4px); }
+  80%       { transform: translateX(4px); }
+}
+
+.shake { animation: hudShake 0.4s ease; }
+
+/* ── Pulso del score al subir ────────────────────────────── */
+@keyframes scorePulse {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.3); color: var(--color-success); }
+}
+
+.score-pulse { animation: scorePulse 0.4s ease; }
+
+/* ── Meteoros decorativos de fondo ───────────────────────── */
+.meteor {
+  position: fixed;
+  width: 2px;
+  height: 80px;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.8), transparent);
+  pointer-events: none;
+  z-index: 0;
+  transform-origin: top center;
+  animation: meteorFall linear infinite;
+}
+
+@keyframes meteorFall {
+  0%   { opacity: 0; transform: translateY(-120px) translateX(0) rotate(215deg); }
+  10%  { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { opacity: 0; transform: translateY(110vh) translateX(-200px) rotate(215deg); }
+}
+
+/* ── Intro de la bola en el canvas ───────────────────────── */
+@keyframes ballSpawn {
+  0%   { transform: scale(0); opacity: 0; }
+  60%  { transform: scale(1.2); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* ── Countdown antes de empezar ──────────────────────────── */
+.countdown-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 80;
+  pointer-events: none;
+}
+
+.countdown-num {
+  font-family: var(--font-display);
+  font-size: 120px;
+  font-weight: 900;
+  color: var(--color-accent);
+  text-shadow: 0 0 60px var(--color-accent);
+  animation: countAnim 0.9s ease forwards;
+}
+
+.countdown-num.go {
+  color: var(--color-success);
+  text-shadow: 0 0 60px var(--color-success);
+  font-size: 80px;
+  letter-spacing: 12px;
+}
+
+@keyframes countAnim {
+  0%   { opacity: 0; transform: scale(2); }
+  20%  { opacity: 1; transform: scale(1); }
+  70%  { opacity: 1; transform: scale(0.95); }
+  100% { opacity: 0; transform: scale(0.7); }
+}
+
+/* ── Badge unlock animation ──────────────────────────────── */
+.badge-unlock {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 300;
+  background: linear-gradient(135deg, rgba(10,15,40,0.97), rgba(20,10,40,0.97));
+  border: 1px solid var(--color-accent3);
+  border-radius: var(--radius-lg);
+  padding: 40px 56px;
+  text-align: center;
+  pointer-events: none;
+  animation: badgeUnlock 0.5s cubic-bezier(0.34,1.56,0.64,1) forwards,
+  badgeFade 0.4s ease 2.6s forwards;
+  box-shadow: 0 0 60px rgba(255,228,77,0.3);
+}
+
+@keyframes badgeUnlock {
+  0%   { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+  100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+@keyframes badgeFade {
+  0%   { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.badge-unlock .badge-icon { font-size: 64px; display: block; margin-bottom: 16px; }
+
+.badge-unlock .badge-label {
+  font-family: var(--font-display);
+  font-size: 10px;
+  letter-spacing: 4px;
+  color: var(--color-muted);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.badge-unlock .badge-name {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--color-accent3);
+  letter-spacing: 3px;
+  text-shadow: 0 0 20px var(--color-accent3);
+}
+
+/* ── Canvas glow border ──────────────────────────────────── */
+#gameCanvas {
+  box-shadow:
+    inset 0 0 30px rgba(0,212,255,0.06),
+    0 0 40px rgba(0,0,0,0.5);
+}
+
+/* ── Live counter pulse ──────────────────────────────────── */
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  30%       { transform: scale(1.25); }
+  60%       { transform: scale(1.1); }
+}
+
+.heartbeat { animation: heartbeat 0.5s ease; }
+
+/* ── Cursor personalizado ─────────────────────────────────── */
+#canvas-wrapper {
+  cursor: none;
+}
+
+#custom-cursor {
+  position: fixed;
+  width: 24px;
+  height: 24px;
+  border: 2px solid var(--color-accent);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1000;
+  transform: translate(-50%, -50%);
+  transition: transform 0.05s ease;
+  box-shadow: var(--glow-blue);
+}
+
+#custom-cursor::after {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  background: rgba(0,212,255,0.3);
+  border-radius: 50%;
+}
+
+#custom-cursor.catching {
+  border-color: var(--color-success);
+  box-shadow: var(--glow-green);
+  transform: translate(-50%, -50%) scale(1.3);
+}

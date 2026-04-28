@@ -1,0 +1,67 @@
+<!-- ============================================================
+    AUTOR: Jean Paul Moncada
+    FUNCIÓN: Raíz del proyecto. Define el viewport, carga los CSS,
+            declara el #custom-cursor, el header/footer globales,
+            el #app vacío (que loader.js rellena), el modal de nombre
+            y el toast-container. El orden de los <script> al final
+            del body es crítico para que cada módulo encuentre las
+            dependencias que necesita.
+    ============================================================ -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <title>Captura la Bolita 🎯</title>
+
+    <link rel="stylesheet" href="css/global.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/animations.css" />
+</head>
+<body>
+
+<div id="custom-cursor"></div>
+
+<header id="global-header">
+    <div class="header-left">🎯 Captura la Bolita</div>
+    <div class="header-right">HUD Tactical Training Simulator</div>
+</header>
+
+<main id="app">
+    <!-- Pantallas inyectadas por js/loader.js desde screens/ -->
+</main>
+
+<footer id="global-footer">
+    <span>© 2026 Captura la Bolita — Proyecto académico</span>
+    <span>Desarrollado con HTML • CSS • JS</span>
+</footer>
+
+<div id="modal-name" class="hidden">
+    <div class="modal-card panel">
+        <h2>🏆 TOP SCORE</h2>
+        <p id="modal-pos-text">¡Ingresa tu nombre!</p>
+        <input type="text" id="modal-name-input" maxlength="12" placeholder="TU NOMBRE" autocomplete="off" />
+        <button id="modal-name-confirm" class="btn btn-primary">Guardar</button>
+    </div>
+</div>
+
+<div id="toast-container"></div>
+
+<!-- Módulos (orden importa) -->
+<script src="js/modules/config.js"></script>
+<script src="js/modules/stats.js"></script>
+<script src="js/modules/audio.js"></script>
+<script src="js/modules/ranking.js"></script>
+<script src="js/modules/badges.js"></script>
+<script src="js/modules/difficulty.js"></script>
+
+<!-- Loader de pantallas -->
+<script src="js/loader.js"></script>
+
+<!-- Controladores -->
+<script src="js/screens.js"></script>
+<script src="js/game.js"></script>
+<script src="js/main.js"></script>
+
+</body>
+</html>

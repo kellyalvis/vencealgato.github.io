@@ -1,0 +1,55 @@
+<!-- ============================================================
+   AUTOR: Franco
+   FUNCIÓN: Pantalla de reglas. Único HTML completamente estático:
+            ningún JS lo modifica. Usa la estructura rules-flex con
+            dos columnas (rules-left y rules-right) que layout.css
+            convierte en flexbox horizontal, con media query para
+            apilarlas en móviles.
+   ============================================================ -->
+<!-- PANTALLA 7: REGLAS -->
+<section id="screen-rules" class="screen hidden">
+    <div class="rules-title">📋 REGLAS DEL JUEGO</div>
+
+    <div class="rules-flex">
+        <div class="rules-left">
+            <div class="rules-card panel">
+                <h3>¿Cómo se juega?</h3>
+                <ul class="rules-list">
+                    <li><span>🖱️</span><span>Usa el mouse como mira</span></li>
+                    <li><span>🎯</span><span>Haz CLICK para disparar</span></li>
+                    <li><span>⚡</span><span>Dispara a las bolas azules</span></li>
+                    <li><span>🚫</span><span>No dispares a las rojas</span></li>
+                </ul>
+            </div>
+
+            <div class="rules-card panel">
+                <h3>Sistema de Vida</h3>
+                <ul class="rules-list">
+                    <li><span>❤️</span><span>Pierdes vida si una azul cae</span></li>
+                    <li><span>💥</span><span>Pierdes vida si disparas una roja</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="rules-right">
+            <div class="rules-card panel">
+                <h3>Niveles</h3>
+                <ul class="rules-list">
+                    <li><span>🟢</span><span>Fácil: +10 pts</span></li>
+                    <li><span>🟡</span><span>Medio: +20 pts</span></li>
+                    <li><span>🔴</span><span>Difícil: +35 pts</span></li>
+                </ul>
+            </div>
+
+            <div class="rules-card panel">
+                <h3>Objetivo</h3>
+                <ul class="rules-list">
+                    <li><span>🏆</span><span>Haz la mayor puntuación</span></li>
+                    <li><span>📊</span><span>Entra al ranking</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <button id="btn-back-rules" class="btn btn-secondary">← Volver</button>
+</section>

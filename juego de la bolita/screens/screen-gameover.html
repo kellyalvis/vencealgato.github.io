@@ -1,0 +1,35 @@
+<!-- ============================================================
+   AUTOR: Franco
+   FUNCIÓN: Pantalla de Game Over. Muestra la grilla de estadísticas
+            (puntaje, capturas, dificultad) con grid-column:1/-1 para
+            la fila completa, el badge-display que screens.js muestra
+            u oculta según si se ganó insignia, y tres botones de
+            acción (reintentar, ranking, menú).
+   ============================================================ -->
+<!-- PANTALLA 5: GAME OVER -->
+<section id="screen-gameover" class="screen hidden">
+    <div class="gameover-card panel">
+        <div class="gameover-title">GAME OVER</div>
+
+        <div class="gameover-stats">
+            <div class="stat-item">
+                <span class="stat-label">PUNTAJE</span>
+                <span class="stat-value" id="go-score">0</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">CAPTURAS</span>
+                <span class="stat-value" id="go-catches">0</span>
+            </div>
+            <div class="stat-item" style="grid-column:1/-1;">
+                <span class="stat-label">DIFICULTAD</span>
+                <span class="stat-value" style="font-size:18px;" id="go-diff">—</span>
+            </div>
+        </div>
+
+        <div class="badge-display hidden" id="go-badge"></div>
+
+        <button id="btn-replay"     class="btn btn-primary">🔄 VOLVER A JUGAR</button>
+        <button id="btn-ranking-go" class="btn btn-secondary">🏆 VER RANKING</button>
+        <button id="btn-menu-go"    class="btn btn-secondary">🏠 MENÚ PRINCIPAL</button>
+    </div>
+</section>

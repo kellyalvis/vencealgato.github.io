@@ -1,0 +1,51 @@
+<!-- ============================================================
+   AUTOR: Jean Paul Moncada
+   FUNCIÓN: Pantalla del juego. Define el HUD con los seis bloques
+            de datos (puntos, vidas, dificultad, récord, nivel, tiempo),
+            el canvas-wrapper con el video de fondo en z-index:0 y el
+            canvas en z-index:1 con fondo transparente para el efecto
+            de video jugable.
+   ============================================================ -->
+<!-- PANTALLA 3: JUEGO -->
+<section id="screen-game" class="screen hidden" style="padding:0; justify-content:flex-start;">
+    <div id="hud">
+        <div class="hud-block">
+            <span class="hud-label">PUNTOS</span>
+            <span class="hud-value" id="hud-score">0</span>
+        </div>
+        <div class="hud-block">
+            <span class="hud-label">VIDAS</span>
+            <span class="hud-value" id="hud-lives">❤️❤️❤️</span>
+        </div>
+        <div class="hud-center">
+            <span id="hud-diff" class="rank-diff easy">FÁCIL</span>
+            <button id="btn-pause" class="hud-btn">⏸ PAUSA</button>
+            <button id="btn-quit"  class="hud-btn">✕ SALIR</button>
+        </div>
+        <div class="hud-block">
+            <span class="hud-label">RECORD</span>
+            <span class="hud-value" id="hud-best">0</span>
+        </div>
+        <div class="hud-block">
+            <span class="hud-label">NIVEL</span>
+            <span class="hud-value" id="hud-level" style="color:var(--color-accent2);">1</span>
+        </div>
+        <div class="hud-block">
+            <span class="hud-label">TIEMPO</span>
+            <span class="hud-value" id="hud-time">60</span>
+        </div>
+    </div>
+
+    <div id="canvas-wrapper">
+        <!-- Video oculto — game.js lo dibuja en el canvas quitando el fondo gris -->
+        <video
+            id="game-bg-video"
+            src="assets/video/game_video.mp4"
+            autoplay
+            loop
+            muted
+            playsinline
+        ></video>
+        <canvas id="gameCanvas"></canvas>
+    </div>
+</section>

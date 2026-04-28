@@ -1,0 +1,226 @@
+/* ============================================================
+   AUTOR: Nilton y soporte del equipo
+   FUNCIÓN: Define todas las variables CSS globales (colores, fuentes,
+            espaciado y sombras), el reset del navegador, el fondo
+            estrellado animado, el header/footer, los botones base,
+            la clase .panel y utilidades como .hidden.
+   ============================================================ */
+/* ============================================================
+  global.css — Variables globales, reset y tipografía base
+  Realizado por: Equipo Captura la Bolita
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap');
+
+:root {
+  /* Paleta principal — tema espacial oscuro */
+  --color-bg:         #05060f;
+  --color-bg2:        #0a0c1e;
+  --color-panel:      rgba(10, 15, 40, 0.85);
+  --color-border:     rgba(80, 180, 255, 0.25);
+  --color-accent:     #00d4ff;
+  --color-accent2:    #ff4fcf;
+  --color-accent3:    #ffe44d;
+  --color-success:    #00ff88;
+  --color-danger:     #ff3a3a;
+  --color-text:       #e8f0ff;
+  --color-muted:      #7a8aaa;
+
+  /* Niveles de dificultad */
+  --color-easy:       #00ff88;
+  --color-medium:     #ffe44d;
+  --color-hard:       #ff4fcf;
+
+  /* Fuentes */
+  --font-display:     'Orbitron', monospace;
+  --font-body:        'Rajdhani', sans-serif;
+
+  /* Espaciado */
+  --radius:           12px;
+  --radius-lg:        20px;
+  --transition:       0.25s ease;
+
+  /* Sombras */
+  --glow-blue:        0 0 20px rgba(0, 212, 255, 0.4);
+  --glow-pink:        0 0 20px rgba(255, 79, 207, 0.4);
+  --glow-green:       0 0 20px rgba(0, 255, 136, 0.4);
+}
+
+/* ── Reset ───────────────────────────────────────────────── */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden; /* Sin scroll en el juego */
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Fondo estrellado animado ────────────────────────────── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,0.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 30% 60%, rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 55% 10%, rgba(255,255,255,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 75% 45%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 90% 80%, rgba(255,255,255,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 20% 85%, rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 65% 70%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(2px 2px at 40% 35%, rgba(0,212,255,0.3) 0%, transparent 100%),
+    radial-gradient(2px 2px at 80% 15%, rgba(255,79,207,0.2) 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 0;
+  animation: twinkle 6s ease-in-out infinite alternate;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% 0%, rgba(0, 212, 255, 0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 100% 100%, rgba(255, 79, 207, 0.06) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes twinkle {
+  from { opacity: 0.7; }
+  to   { opacity: 1; }
+}
+
+/* ===== HEADER GLOBAL ===== */
+#global-header{
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 48px;
+  background: rgba(6,9,15,0.95);
+  border-bottom: 1px solid rgba(0,255,170,0.2);
+  display:flex;
+  justify-content: space-between;
+  align-items:center;
+  padding: 0 24px;
+  font-family: var(--font-display);
+  z-index: 1000;
+  font-size: 12px;
+  letter-spacing: 2px;
+}
+
+/* ===== FOOTER GLOBAL ===== */
+#global-footer{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 36px;
+  background: rgba(6,9,15,0.95);
+  border-top: 1px solid rgba(0,255,170,0.2);
+  display:flex;
+  justify-content: space-between;
+  align-items:center;
+  padding: 0 24px;
+  font-size: 11px;
+  color: var(--color-muted);
+  z-index: 1000;
+}
+
+/* Ajuste para que no tape el juego */
+#app{
+  padding-top: 48px;
+  padding-bottom: 36px;
+}
+
+/* ── Utilitarios ─────────────────────────────────────────── */
+.hidden   { display: none !important; }
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Botón base */
+.btn {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 14px 36px;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.1);
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+}
+
+.btn:hover::before {
+  transform: translateX(0);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--color-accent), #0080cc);
+  color: #fff;
+  box-shadow: var(--glow-blue);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 35px rgba(0, 212, 255, 0.6);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--color-accent);
+  border: 1px solid var(--color-accent);
+}
+
+.btn-secondary:hover {
+  background: rgba(0, 212, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.btn-danger {
+  background: linear-gradient(135deg, var(--color-danger), #aa1111);
+  color: #fff;
+  box-shadow: 0 0 20px rgba(255, 58, 58, 0.4);
+}
+
+/* Panel / Card base */
+.panel {
+  background: var(--color-panel);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Textos con glow */
+.glow-text {
+  text-shadow: 0 0 20px currentColor;
+}
+
+/* ── Scrollbar personalizado (en caso de usarse) ─────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--color-bg); }
+::-webkit-scrollbar-thumb { background: var(--color-accent); border-radius: 3px; }
